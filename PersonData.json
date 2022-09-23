@@ -1,1 +1,17 @@
-{"Maxime": "{\"name\": \"Maxime\", \"money\": 200, \"batiments\": []}"}
+{
+  "Maxime": { "name": "Maxime", "money": 1000, "batiments": {} },
+  "Sam": {
+    "name": "Sam",
+    "money": 782,
+    "batiments": {
+      "CCM": {
+        "name": "CCM",
+        "price": 220,
+        "level": 0,
+        "index": 0,
+        "owner": "Sam",
+        "level_price": [220, 200, 280, 360, 380, 560]
+      }
+    }
+  }
+}
