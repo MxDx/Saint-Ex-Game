@@ -1,15 +1,15 @@
 {
-  "Maxime": { "name": "Maxime", "money": 1000, "batiments": {} },
-  "Sam": {
-    "name": "Sam",
-    "money": 782,
+  "Sam": { "name": "Sam", "money": 780, "batiments": {} },
+  "Maxime": {
+    "name": "Maxime",
+    "money": 8440,
     "batiments": {
       "CCM": {
         "name": "CCM",
         "price": 220,
         "level": 0,
         "index": 0,
-        "owner": "Sam",
+        "owner": "Maxime",
         "level_price": [220, 200, 280, 360, 380, 560]
       }
     }

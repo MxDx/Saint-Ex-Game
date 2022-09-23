@@ -1,30 +1,33 @@
-from asyncore import write
-from gettext import find
 from batiment import *
 import json
 
 class Person:
-    def __init__(self, name, money=0, batiments=[]):
+    def __init__(self, name, money=0, batiments={}):
         self.name = name
         self.money = money
-        self.batiments = batiments
+        self.batiments = {}
+        for bat in batiments:
+            self.batiments[bat] = dico_of_bat[bat]
         print("{} initialisé, avec {}$ et {} batiments".format(name, money, len(batiments)))
 
     def find(self, batiment):
             found = None
             for i in self.batiments:
-                if str(i) == batiment:
+                if str(self.batiments[i]) == batiment:
                     found = i
             return found
 
     def buyBatiment(self, batiment):
-        if batiment.price > self.money:
-            print("Pas assez de thunes")
+        if batiment in self.batiments:
+            print("Tu l'as déjà saucisse")
         else:
-            self.batiments.append(batiment)
-            self.money -= batiment.price
-            batiment.buy(self)
-            print("Transaction de {}$ effectué, il reste {}$ sur votre compte".format(batiment.price,self.money))
+            if batiment.price > self.money:
+                print("Pas assez de thunes")
+            else:
+                self.batiments[batiment.name] = batiment
+                self.money -= batiment.price
+                batiment.buy(self)
+                print("Transaction de {}$ effectué, il reste {}$ sur votre compte".format(batiment.price,self.money))
 
     def upgrade_batiment(self, batiment):
         found_batiment = self.find(batiment)
@@ -48,8 +51,8 @@ class Person:
         personData["money"] = self.money
         personData["batiments"] = {}
         for bat in self.batiments:
-            personData["batiments"][str(bat)] = bat.__dict__
-            personData["batiments"][str(bat)]['owner'] = self.name
+            personData["batiments"][bat] = self.batiments[bat].__dict__
+            personData["batiments"][bat]['owner'] = self.name
         return personData
 
     def __str__(self):
@@ -69,6 +72,9 @@ def load_JSON(filename):
         for person in data:
             print(data[person]['name'])
             output_data[person] = Person(data[person]['name'], data[person]['money'], data[person]['batiments'])
+            for batiment in output_data[person].batiments:
+                print(output_data[person].batiments[batiment].owner)
+                output_data[person].batiments[batiment].owner = output_data[person]
     return output_data
 
 persons = load_JSON('PersonData.json')
@@ -77,7 +83,7 @@ persons = load_JSON('PersonData.json')
 
 
 
-persons['Sam'].buyBatiment(CCM)
+persons['Maxime'].buyBatiment(CCM)
 
 
 
@@ -90,18 +96,4 @@ write_JSON('PersonData.json', persons)
 
 
 # Maxime = Person("Maxime", 200)
-# CCM = CCM_Class()
-# Maxime.addMoney(100)
-# Maxime.buyBatiment(CCM)
-# Maxime.addMoney(1000)
-# Maxime.upgrade_batiment("CCM")
 
-
-# personData = Maxime.toJSON()
-# json.dump(personData, open('PersonData.json', 'w'))
-# personData["Maxime"] = Maxime.__dict__
-
-# print(Maxime)
-
-# with open('PersonData.json', 'w') as outfile:
-#     json.dump(personData, outfile)
