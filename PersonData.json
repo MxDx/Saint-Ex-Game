@@ -1,17 +1,23 @@
 {
-  "Sam": { "name": "Sam", "money": 780, "batiments": {} },
   "Maxime": {
     "name": "Maxime",
-    "money": 8440,
+    "money": 780,
     "batiments": {
       "CCM": {
         "name": "CCM",
         "price": 220,
+        "earnings": 0,
         "level": 0,
-        "index": 0,
         "owner": "Maxime",
-        "level_price": [220, 200, 280, 360, 380, 560]
+        "level_price": [220, 200, 280, 360, 380, 560],
+        "earnings_price": [20, 60, 95, 145, 215, 315]
       }
     }
+  },
+  "Sam": { "name": "Sam", "money": 10, "batiments": {} },
+  "Hugolin": {
+    "name": "Hugolin",
+    "money": 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
+    "batiments": {}
   }
 }

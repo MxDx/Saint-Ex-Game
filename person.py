@@ -73,7 +73,6 @@ def load_JSON(filename):
             print(data[person]['name'])
             output_data[person] = Person(data[person]['name'], data[person]['money'], data[person]['batiments'])
             for batiment in output_data[person].batiments:
-                print(output_data[person].batiments[batiment].owner)
                 output_data[person].batiments[batiment].owner = output_data[person]
     return output_data
 
@@ -83,7 +82,8 @@ persons = load_JSON('PersonData.json')
 
 
 
-persons['Maxime'].buyBatiment(CCM)
+
+persons['Hugolin']=Person('Hugolin',10**100)
 
 
 

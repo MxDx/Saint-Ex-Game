@@ -5,6 +5,7 @@ class Batiment:
         self.earnings = earnings
         self.level = level
         self.owner = None
+        # self.collect = None
         self.level_price = []
         self.earnings_price = []
 
@@ -21,7 +22,7 @@ class CCM_Class(Batiment):
     def __init__(self):
         super().__init__("CCM", 220, 0)
         self.level_price = [220, 200, 280, 360, 380, 560]
-        self.earnings_price[20, 60, 95, 145, 215, 315]
+        self.earnings_price = [20, 60, 95, 145, 215, 315]
 
     def buy(self, buyer):
         if self.owner != None:
