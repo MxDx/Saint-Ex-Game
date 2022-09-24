@@ -5,11 +5,26 @@ class Person:
     def __init__(self, name, money=0, batiments={}):
         self.name = name
         self.money = money
-        
+        self.logo = None
+        self.communitymanager = None
+        self.prestige =None
         self.batiments = {}
         for bat in batiments:
             self.batiments[bat] = dico_of_bat[bat]
         print("{} initialisé, avec {}$ et {} batiments".format(name, money, len(batiments)))
+    
+    def logo(self):
+        self.logo = "oui"
+        print("achat du logo bien effectué. bonne continuation " + self.name)
+
+    
+    def achat_communitymanager(self):
+        self.achat_communitymanager="oui"
+        print("achat du community manager bien effectué. bonne continuation " + self.name)
+
+    def achat_prestige(self):
+        self.pretige="oui"
+        print("achat du responsable de l’événementiel de prestige bien effectué. bonne continuation " + self.name)
 
     def find(self, batiment):
             found = False
@@ -18,7 +33,13 @@ class Person:
                 return batiment
             else:
                 return None
-
+    def rachat(self,other, money, batiment):
+        other.batiments.pop(batiment.name)
+        self.batiments[batiment.name] = batiment
+        batiment.owner = self.name
+        self.money -= money
+        other.money += money
+    
     def buyBatiment(self, batiment):
         if batiment in self.batiments:
             print("Tu l'as déjà saucisse")
@@ -39,7 +60,7 @@ class Person:
             else: 
                 found_batiment.upgrade()
                 self.money -= found_batiment.level_price[found_batiment.level]
-                print("Upgrade de {}$ effectué level({} -> {}), il reste {}$ sur votre compte".format(found_batiment.level_price[found_batiment.level],found_batiment.level-1, found_batiment.level,self.money))
+                print("Upgrade de {}$ effectué level({} -> {}), il reste {}$ sur votre compte ".format(found_batiment.level_price[found_batiment.level],found_batiment.level-1, found_batiment.level,self.money) + self.name)
         else:
             print("T'as pas le batiment gros debilus !")        
 
@@ -49,12 +70,15 @@ class Person:
     
     def retiremoney(self,money):
          self.money -= money
-         print("le retrait de {}$ effectué".format(money))
+         print("retrait de {}$ effectué".format(money))
 
     def toJSON(self):
         personData = {}
         personData["name"] = self.name
         personData["money"] = self.money
+        personData["logo"] = self.logo
+        personData["communitymanager"] = self.communitymanager
+        personData["prestige"] = self.prestige
         personData["batiments"] = {}
         for bat in self.batiments:
             personData["batiments"][bat] = self.batiments[bat].__dict__
@@ -86,7 +110,10 @@ persons = load_JSON('PersonData.json')
 
 ##################################################
 
-persons["serval"].upgrade_batiment(CCM)
+persons["mangabey"].rachat(persons["sloughi"],100,mediamarkt)
+
+
+
 
 
 

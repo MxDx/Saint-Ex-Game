@@ -1,14 +1,25 @@
 {
     "serval": {
         "name": "serval",
-        "money": 600,
+        "money": 340,
+        "logo": null,
+        "communitymanager": null,
+        "prestige": null,
+        "batiments": {}
+    },
+    "sloughi": {
+        "name": "sloughi",
+        "money": 20160,
+        "logo": null,
+        "communitymanager": null,
+        "prestige": null,
         "batiments": {
             "CCM": {
                 "name": "CCM",
                 "price": 220,
-                "earnings": 60,
-                "level": 2,
-                "owner": "serval",
+                "earnings": 20,
+                "level": 0,
+                "owner": "sloughi",
                 "level_price": [
                     220,
                     200,
@@ -28,20 +39,18 @@
             }
         }
     },
-    "sloughi": {
-        "name": "sloughi",
-        "money": 300,
-        "batiments": {}
-    },
     "mangabey": {
         "name": "mangabey",
-        "money": 100,
+        "money": 640,
+        "logo": null,
+        "communitymanager": null,
+        "prestige": null,
         "batiments": {
             "mediamarkt": {
                 "name": "mediamarkt",
                 "price": 200,
                 "earnings": 25,
-                "level": 0,
+                "level": 2,
                 "owner": "mangabey",
                 "level_price": [
                     200,
