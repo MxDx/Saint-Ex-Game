@@ -5,17 +5,19 @@ class Person:
     def __init__(self, name, money=0, batiments={}):
         self.name = name
         self.money = money
+        
         self.batiments = {}
         for bat in batiments:
             self.batiments[bat] = dico_of_bat[bat]
         print("{} initialisé, avec {}$ et {} batiments".format(name, money, len(batiments)))
 
     def find(self, batiment):
-            found = None
-            for i in self.batiments:
-                if str(self.batiments[i]) == batiment:
-                    found = i
-            return found
+            found = False
+            found= self.batiments.get(batiment)
+            if(found !=False):
+                return batiment
+            else:
+                return None
 
     def buyBatiment(self, batiment):
         if batiment in self.batiments:
@@ -32,7 +34,7 @@ class Person:
     def upgrade_batiment(self, batiment):
         found_batiment = self.find(batiment)
         if(found_batiment != None):
-            if found_batiment.level_price[found_batiment.level+1] > self.money:
+            if found_batiment.level_price[found_batiment.level] > self.money:
                 print("Pas assez de thunes")
             else: 
                 found_batiment.upgrade()
@@ -44,6 +46,10 @@ class Person:
     def addMoney(self, money):
         self.money += money
         print("Ajout de {}$ effectué".format(money))
+    
+    def retiremoney(self,money):
+         self.money -= money
+         print("le retrait de {}$ effectué".format(money))
 
     def toJSON(self):
         personData = {}
@@ -80,10 +86,10 @@ persons = load_JSON('PersonData.json')
 
 ##################################################
 
+persons["serval"].upgrade_batiment(CCM)
 
 
 
-persons['Hugolin']=Person('Hugolin',10**100)
 
 
 
